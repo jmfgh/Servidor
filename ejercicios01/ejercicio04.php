@@ -1,28 +1,24 @@
-<html>
-<head>
-<title>Online PHP Script Execution</title>
-<style type="text/css">
-body {
-  font-family: "courier";
-}
-</style>
-</head>
-<body>
 <?php
+$gener = 0;
+$time_start = microtime(true);
+$cont = 0;
 
-    $num = random_int(1,9);
+do{
+    $num = random_int(1,10);
+    $gener++;
     
-    echo "<p>Numero generado: $num</p>";
-
-    for ($i = 1; $i <= $num; $i++) {
-        for ($a = 1; $a <= $num - $i; $a++) {
-             echo "<span>&nbsp;</span>";   
+    echo "Ha salido el $num <br>";
+    
+        if($num == 6){
+            $cont++;
+        }else{
+            $cont = 0;
         }
-        for ($a = 1; $a <= ($i*2) - 1; $a++) {
-            echo "<span>*</span>";
-        }
-        echo "<br>";
-    }
+    
+   }while($cont != 3);
+   
+   $time_end = microtime(true);
+   $tiempo = $time_end - $time_start;
+   
+   echo "Han salido tres 6 seguidos tras generar $gener números en $tiempo milisegundos";
 ?>
-</body>
-</html>
