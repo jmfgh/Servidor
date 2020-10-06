@@ -40,8 +40,8 @@
         $num1 = random_int(1,10);
         $num2 = random_int(1,10);
         
-        echo "<p>1ºNúmero:<strong>$num1</strong></p>";
-        echo "<p>2ºNúmero:<strong>$num2</strong></p><br>";
+        echo "<p>1º Numero:<strong> $num1</strong></p>";
+        echo "<p>2º Numero:<strong> $num2</strong></p><br>";
         
         $suma = $num1 + $num2;
         $resta = $num1 - $num2;
@@ -52,8 +52,10 @@
     
         echo "<table>
                 <thead>
-                <th>Operación</th>
-                <th>Resultado</th>
+                    <tr>
+                        <th>Operacion</th>
+                        <th>Resultado</th>
+                    </tr>
                 </thead>
                 <tbody>
                     <tr>

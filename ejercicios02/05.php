@@ -27,7 +27,9 @@
         
         echo "<table style='border:".$borde."px solid black;'>
                 <thead>
+                <tr>
                 <th colspan = '".$columnas."'>Generacion de Tabla con una funcion</th>
+                </tr>
                 </thead>
                 <tbody>";
         
