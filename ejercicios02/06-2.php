@@ -3,8 +3,22 @@
 <title>Online PHP Script Execution</title>
 <style type="text/css">
     body {
-      font-family: "courier";
+        font-family: "courier";
     }
+    
+    img{
+        padding: 0px;
+        margin: 0px;
+        width: 15px;
+        height: 10px;
+    }
+    
+    span{
+        padding-left:15px;
+        max-width: 15px;
+        height: 10px;
+    }
+    
 </style>
 </head>
 <body>
@@ -19,9 +33,9 @@
         for ($a = 0; $a < (($num*4)+($num-1)); $a++) {
             $cont++;
             if($cont <= 4){
-                echo "*";
+                echo "<img src='brick.jpg'>";
             }else{
-                echo "&nbsp;";
+                echo "<span></span>";
                 $cont = 0;
             }
         }
@@ -29,10 +43,8 @@
     }
     
     for ($a = 0; $a < (($num*4)+($num-1)); $a++) {
-        echo "*";
+        echo "<img src='brick.jpg'>";
     }
-
-
 ?>
 </body>
 </html>
