@@ -43,14 +43,13 @@
     define ('DOS',    "Ha ganado el jugador 2");
     define ('EMPATE',    "Ha habido un empate");
 
-    $uno = random_int(0,2);
-    $dos = random_int(0,2);
     
-    function calcularResu($valor, $jugador){
+    function obtenerMano($jugador){
         
+        $num = random_int(0,2);
         $resu = 0;
         
-        switch ($valor) {
+        switch ($num) {
             case 0:
                     if($jugador == PRIMERO){
                         $resu = PIEDRA1;
@@ -122,10 +121,10 @@
         return $mensaje;
     }
     
-    $resu1 = calcularResu($uno, PRIMERO);
-    $resu2 = calcularResu($dos, SEGUNDO);
+    $mano1 = obtenerMano(PRIMERO);
+    $mano2 = obtenerMano(SEGUNDO);
     
-    echo "<h1>¡Piedra, Papel, Tijera!</h1>
+    echo "<h1>Â¡Piedra, Papel, Tijera!</h1>
 
             <p>Actualice la pagina para mostrar otra partida</p><br>
 
@@ -138,12 +137,12 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td><span>".$resu1."</span></td>
-                        <td><span>".$resu2."</span></td>
+                        <td><span>".$mano1."</span></td>
+                        <td><span>".$mano2."</span></td>
                     </tr>
                 </tbody>
                <tfoot>
-                    <tr><th colspan='2'>".calcularGanador($resu1, $resu2)."</th></tr>
+                    <tr><th colspan='2'>".calcularGanador($mano1, $mano2)."</th></tr>
                 </tfoot>
             </table>";
 
