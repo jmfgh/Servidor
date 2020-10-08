@@ -27,7 +27,7 @@
       }
       
       .der{
-      
+        text-align: right;
       }
 
   </style>
@@ -60,27 +60,27 @@
                 <tbody>
                     <tr>
                         <td>$num1 + $num2</td>
-                        <td>$suma</td>
+                        <td class = 'der'>$suma</td>
                     </tr>
                     <tr class='gris'>
                         <td>$num1 - $num2</td>
-                        <td>$resta</td>
+                        <td class = 'der'>$resta</td>
                     </tr>
                     <tr>
                         <td>$num1 * $num2</td>
-                        <td>$mul</td>
+                        <td class = 'der'>$mul</td>
                     </tr>
                     <tr class='gris'>
                         <td>$num1 / $num2</td>
-                        <td>$divi</td>
+                        <td class = 'der'>$divi</td>
                     </tr>
                     <tr>
                         <td>$num1 % $num2</td>
-                        <td>$mod</td>
+                        <td class = 'der'>$mod</td>
                     </tr>
                     <tr class='gris'>
                         <td>$num1<sup>$num2</sup></td>
-                        <td>$pot</td>
+                        <td class = 'der'>$pot</td>
                     </tr>
                 </tbody>
               </table>";
