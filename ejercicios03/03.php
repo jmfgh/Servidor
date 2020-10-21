@@ -13,13 +13,11 @@
 
     $medios =  [ "El Pais" => "https://www.elpais.com", "El Mundo" => "https://www.elmundo.es", "ABC" => "https://www.abc.es", 
              "Huffington Post" => "https://www.huffingtonpost.es", "Diario Publico" => "https://www.publico.es"];
-
-
-    echo "<ul>";
     
-    foreach ($medios as $medio => $value){
-        echo "<li><a href='".$value."'>".$medio."</a></li>";
-    }
+    $clave = array_rand($medios);
+    
+    echo "El medio recomendado es <a href='".$medios[$clave]."'>".$clave."</a>";
+
 ?>
 </body>
 </html>
