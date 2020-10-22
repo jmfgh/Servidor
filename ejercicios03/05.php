@@ -25,20 +25,33 @@
         $rango[] = $i;
     }
     
-    $numeros = [];
+    $indices = array_rand($rango, 6);
     
+    // Me quedo con los valores
+    $vbonoloto = [];
+    foreach ($indices as $i ) {
+        $vbonoloto[] = $rango[$i];
+    }
+    // Obtengo el número complementario y lo elimino de la tabla
+    $icomplementario = random_int(0, 5);
+    $complementario = $vbonoloto[$icomplementario];
+    unset($vbonoloto[$icomplementario]);
     
-    
-    echo "<table>
-            <tbody>";
-    
-        foreach ($deportes as $deporte => $img){
-            echo "<tr><td>".$deporte."</td><td><img src=".$img."></td></tr>";
-        }
-    
-    echo "</tbody>
-          </table>";
+    ?>
+<body>
+    <b>Sorteo de la Bonoloto</b>
+	<table border=1>
+		<tr>
+    <?php
+    foreach ($vbonoloto as $num) {
+        ?>
+    <td><?php echo $num ?></td>
+    <?php
+    }
+    ?>
+    <td><?php echo "Complementario $complementario " ?></td>
+		</tr>
+	</table>
 
-?>
 </body>
 </html>
