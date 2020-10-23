@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+	<form action="03.php" method="POST">
+
+			<h1 style="text-align: center">
+				<b>FORMULARIOS CON CONTROLES HTML5</b>
+			</h1>
+
+			NUMERO 1 (number): <input name="num1" type="number"><br>
+            NUMERO 2 (range [10-100]): <input type="range" name="num2" min="10" max="100" step="5"><br>
+            
+			<label for="estaciones">Estaciones (list):</label>
+			  <input list="estaciones" name="estacion">
+			  <datalist id="estaciones">
+			    <option value="Primavera">
+			    <option value="Verano">
+			    <option value="Otoño">
+			    <option value="Invierno">
+			  </datalist><br>
+
+			Color favorito (color): <input type="color" name="tucolor"> <br>
+			Buscar (search): <input name="busqueda" type="search"><br>
+			Nombre (text): <input name="nombre" type="text"><br>			
+			Apellido (text): <input name="apellido" type="text"><br>				
+			E-mail (email): <input name="email" type="email"><br>	
+			Fecha de nacimiento: <input name="fecna" type="date"><br>	
+            Edad (number [0-150]): <input type="number" name="edad" min="0" max="150"><br>			
+			Pagina personal (url): <input name="web" type="url"><br>		
+			Horario: De <input name="horaA" type="time"> a <input name="horaC" type="time"><br>			
+
+			<input type="submit" value="Enviar Consulta">
+
+	</form>
+</body>
+</html>
