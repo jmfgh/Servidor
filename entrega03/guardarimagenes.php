@@ -45,9 +45,9 @@
         }
     }
     
-    function comprobarTamanio($tamanio) {
+    function comprobarTamanio($tamanio, $tamanioMax) {
 
-        if($tamanio <= 300000){
+        if($tamanio <= $tamanioMax){
             return true;
         }else{
             return false;
@@ -80,22 +80,19 @@
         $mensaje = '';
         $imagenes = [];
         $tamanioTotal = 0;
+        $num = 0;
         
         // si no se reciben el directorio de alojamiento y el archivo, se descarta el proceso
         // se reciben el directorio de alojamiento y el archivo
-        if ((isset($_FILES['imagen1']['name'])) or (isset($_FILES['imagen2']['name']))) {
-
-
-            if((isset($_FILES['imagen1']['name']))){
-                
-                $imagenes[] = 'imagen1';
-                
+        
+        foreach ($_FILES as $valor){
+            if((isset($valor['name']))){
+                $num++;
+                $imagenes[] = 'imagen'.$num;  
             }
-            if((isset($_FILES['imagen2']['name']))){
-                
-                $imagenes[] = 'imagen2';
-                
-            }
+        }
+        
+        if ($num > 0) {
             
             // Compruebo el directorio y que tengo permisos
             if ( is_dir($directorio) && is_writable ($directorio)) {
@@ -136,7 +133,7 @@
                         }
                          
                         //Comprobación de que no se excede el tamaño total de subida
-                        if(comprobarTamanio($tamanioTotal)){
+                        if(comprobarTamanio($tamanioTotal, 300000)){
                             $todoOK = true;
                         }else{
                             $todoOK = false;

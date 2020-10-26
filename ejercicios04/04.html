@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+	h1{
+		background-color: blue;
+		color: white;
+		padding: 15px;
+	}
+	h3, h4{
+		color: grey;
+	}
+	div{
+		text-align: center;
+	}
+</style>
+</head>
+<body>
+	<form method="POST" action="04.php">
+
+				<div><h1>Formulario con multiples campos</h1></div>
+
+				<h3>CAMPOS DE TEXTO:</h3>
+				Nombre: <input name="nombre" type="text"><br>
+				Contraseña: <input name="clave" type="password" placeholder="Contraseña" >
+				
+				<hr>
+				
+				<h3>RADIO:</h3>
+				<input type='radio' name='color' value='rojo'checked> Rojo <br>
+        		<input type='radio' name='color' value='naranja'> Naranja <br>		
+        		<input type='radio' name='color' value='verde'> Verde <br>
+				
+				<hr>
+				
+				<h3>CHECKBOX:</h3>
+				<input name="publicidad" value="publicidad" type="checkbox"> Quiero recibir publicidad <br> 
+				<h3>MULTI CHECKBOX:</h3>
+			    <input name="idiomas[]" value="Ingles" type="checkbox" > Ingles<br> 
+			    <input name="idiomas[]" value="Frances" type="checkbox"> Frances<br>
+			    <input name="idiomas[]" value="Aleman" type="checkbox"> Aleman<br>
+			    
+			    <hr>
+			    
+			    <h3>SELECT:</h3>
+			    <h4>Simple:</h4>
+			    
+			    Año de finalizacion de estudios: <select name="anyo" size="4">
+						<option value="2014">2014</option>
+						<option value="2015">2015</option>
+						<option value="2016">2016</option>
+						<option value="2017">2017</option>
+					</select>
+					
+				<h4>Multiple:</h4>	
+				Ciudades: <select name="ciudades[]" size="3" multiple>
+						<option value="33">Oviedo</option>
+						<option value="17">Gerona</option>
+						<option value="28">Madrid</option>
+						<option value="41">Sevilla</option>
+						<option value="08">Barcelona</option>
+					</select>
+					
+			    <hr>
+			    
+			    <h3>TEXTAREA:</h3>
+			    Escriba sus comentarios:<textarea name="textarea" rows="4" cols="50"></textarea>
+			    
+			    <hr>
+		    <h3>BOTONES:</h3>	
+			<input type="reset" value="Resetear el formulario">
+			<input type="submit" value="Enviar formulario al servidor">
+
+	</form>
+</body>
+</html>
