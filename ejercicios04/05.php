@@ -16,7 +16,7 @@
 </head>
 <body>
 
-<?php //----- Si método GET -> muestra formulario y si es POST -> Valida y procesa el formulario
+<?php //----- Si mï¿½todo GET -> muestra formulario y si es POST -> Valida y procesa el formulario
 
     $resu = 0;
 
@@ -26,15 +26,26 @@
 
                 Nombre: <input name='nombre' type='text'><br>
                 Apellidos: <input name='apellidos' type='text'><br>
-                <hr>
+                Edad:<select name='anyo' size='2'>
+						<option value='17'>Menor de 18</option>
+						<option value='54'>Menor de 55</option>
+						<option value='56'>Mayor de 55</option>
+					 </select>
         		
         		<input type='radio' name='sexo' value='Hombre'> Hombre <br>
-        		<input type='radio' name='sexo' value='Mujer'> Mujer <br>		
+        		<input type='radio' name='sexo' value='Mujer'> Mujer <br>	
 
-	          </form>";
+                Hobbies:
+			    <input name='hobbies[]' value='lectura' type='checkbox' >lectura<br> 
+			    <input name='hobbies[]' value='ver la tele' type='checkbox'>ver la tele<br>
+			    <input name='hobbies[]' value='hacer deporte' type='checkbox'>hacer deporte<br>
+                <input name='hobbies[]' value='salir de marcha' type='checkbox'>salir de marcha<br>
+	          
+                <input type='submit' value='Enviar'>
+                </form>";
     }else{     
         
-
+            
             
 
 
