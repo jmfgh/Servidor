@@ -36,9 +36,8 @@
     
     $directorio = 'C:\Users\jmfgh\OneDrive\Desktop\DAW\SERVIDOR\imgusers';
     
-    function comprobarFormato($nombre) {
-        $formato = substr($nombre, -3);
-        if($formato == "png" || $formato == "jpg"){
+    function comprobarFormato($formato) {
+        if($formato == "image/png" || $formato == "image/jpeg"){
             return true;
         }else{
             return false;
@@ -125,7 +124,7 @@
                         $todoOK = false;
                         
                         //Comprobación de que es un fichero de imagen y que no se excede el tamaño total de subida
-                        if(comprobarFormato($nombreFichero)){
+                        if(comprobarFormato($tipoFichero)){
                             $todoOK = true;
                         }else{
                             $todoOK = false;
