@@ -90,8 +90,6 @@
                 $imagenes[] = 'imagen'.$num;  
             }
         }
-        
-        if ($num > 0) {
             
             // Compruebo el directorio y que tengo permisos
             if ( is_dir($directorio) && is_writable ($directorio)) {
@@ -162,12 +160,6 @@
             } else {
                 $mensaje .= 'ERROR: No es un directorio correcto o no se tiene permiso de escritura <br><br>';
             }   
-               
-        }else{         
-
-        $mensaje .= 'ERROR: No se indicó ningúna imagen para subir.';
-        
-        }
         
         echo $mensaje;
         echo "<br><br><input type='button' value='Volver' onClick='history.go(-1);'>";
