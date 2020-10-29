@@ -43,10 +43,18 @@
             return false;
         }
     }
+    function comprobarTamanioIndividual($tamanio, $tamanioMax) {
+        
+        if($tamanio <= $tamanioMax){
+            return true;
+        }else{
+            return false;
+        }
+    }
     
-    function comprobarTamanio($tamanio, $tamanioMax) {
+    function comprobarTamanioTotal($tamanio, $tamanioMax) {
 
-        if($tamanio <= 200000 && $tamanio <= $tamanioMax){
+        if($tamanio <= $tamanioMax){
             return true;
         }else{
             return false;
@@ -130,11 +138,19 @@
                         }
                          
                         //Comprobación de que no se excede el tamaño de subida
-                        if(comprobarTamanio($tamanioTotal, 300000)){
+                        if(comprobarTamanioIndividual($tamanioFichero, 200000)){
                             $todoOK = true;
                         }else{
                             $todoOK = false;
                             $mensaje .= 'ERROR: Se excede el tamaño de subida de imágenes <br><br>';
+                        }
+                        
+                        //Comprobación de que no se excede el tamaño de subida total
+                        if(comprobarTamanioTotal($tamanioTotal, 300000)){
+                            $todoOK = true;
+                        }else{
+                            $todoOK = false;
+                            $mensaje .= 'ERROR: Se excede el tamaño de subida total <br><br>';
                         }
                              
                         //Comprobación de que no existe ya un fichero con ese nombre
