@@ -20,21 +20,21 @@
 </head>
 <body>
 
-<?php //Si mÃ©todo GET -> muestra formulario y si es POST -> Valida y procesa el formulario
+<?php //Si método GET -> muestra formulario y si es POST -> Valida y procesa el formulario
 
     // Posibles errores de subida segun el manual de PHP
     $codigosErrorSubida= [
     0 => 'Subida correcta',
-    1 => 'El tamaÃ±o del archivo excede el admitido por el servidor',  // directiva upload_max_filesize en php.ini
-    2 => 'El tamaÃ±o del archivo excede el admitido por el cliente',  // directiva MAX_FILE_SIZE en el formulario HTML
+    1 => 'El tamaño del archivo excede el admitido por el servidor',  // directiva upload_max_filesize en php.ini
+    2 => 'El tamaño del archivo excede el admitido por el cliente',  // directiva MAX_FILE_SIZE en el formulario HTML
     3 => 'El archivo no se pudo subir completamente',
-    4 => 'No se seleccionÃ³ ningÃºn archivo para ser subido',
+    4 => 'No se seleccionó ningún archivo para ser subido',
     6 => 'No existe un directorio temporal donde subir el archivo',
     7 => 'No se pudo guardar el archivo en disco',  // permisos
-    8 => 'Una extensiÃ³n PHP evito la subida del archivo'  // extensiÃ³n PHP
+    8 => 'Una extensión PHP evito la subida del archivo'  // extensión PHP
     ]; 
     
-    $directorio = 'C:\Users\jmfgh\OneDrive\Desktop\DAW\SERVIDOR\imgusers';
+    define('RUTA', 'C:\Users\jmfgh\OneDrive\Desktop\DAW\SERVIDOR\imgusers');
     
     function comprobarFormato($formato) {
         if($formato == "image/png" || $formato == "image/jpeg"){
@@ -61,9 +61,9 @@
         }
     }
     
-    function comprobarNombre($directorio, $nombre) {
+    function comprobarNombre($nombre) {
         
-        $fichero = $directorio.'/'.$nombre;
+        $fichero = RUTA.'/'.$nombre;
         
         if(file_exists($fichero)){
             return true;
@@ -88,23 +88,24 @@
         $imagenes = [];
         $tamanioTotal = 0;
         $num = 0;
-        
-        // si no se reciben el directorio de alojamiento y el archivo, se descarta el proceso
-        // se reciben el directorio de alojamiento y el archivo
-        
+
         foreach ($_FILES as $valor){
-            if((isset($valor['name']))){
+            if(!empty($valor['name'])){
                 $num++;
                 $imagenes[] = 'imagen'.$num;  
             }
         }
-            
+        
+       if(count($imagenes) == 0){
+            echo "No has seleccionado ninguna imagen para subir.<br><br>";
+       }else{     
+           
             // Compruebo el directorio y que tengo permisos
-            if ( is_dir($directorio) && is_writable ($directorio)) {
+            if ( is_dir(RUTA) && is_writable (RUTA)) {
             
                 for ($i = 0; $i < count($imagenes); $i++) {
                     
-                    // InformaciÃ³n sobre las imÃ¡genes subidas
+                    // Información sobre las imágenes subidas
                     $nombreFichero   =   $_FILES[$imagenes[$i]]['name'];
                     $tipoFichero    =   $_FILES[$imagenes[$i]]['type'];
                     $tamanioFichero  =   $_FILES[$imagenes[$i]]['size'];
@@ -114,47 +115,47 @@
                     
                     $mensaje .= 'Intentando subir el archivo: ' . ' <br>';
                     $mensaje .= "- Nombre: $nombreFichero" . ' <br>';
-                    $mensaje .= '- TamaÃ±o: ' . number_format(($tamanioFichero / 1000), 1, ',', '.'). ' KB <br>';
+                    $mensaje .= '- Tamaño: ' . number_format(($tamanioFichero / 1000), 1, ',', '.'). ' KB <br>';
                     $mensaje .= "- Tipo: $tipoFichero" . ' <br>' ;
                     $mensaje .= "- Nombre archivo temporal: $temporalFichero" . ' <br>';
-                    $mensaje .= "- CÃ³digo de estado: $errorFichero" . ' <br>';
+                    $mensaje .= "- Código de estado: $errorFichero" . ' <br>';
                     
-                    $mensaje .= '<br><div><h2>Resultado '.$imagenes[$i].'</h2></div><br>';
+                    $mensaje .= '<br><div><h2>Resultado '.$imagenes[$i].'</h2></div>';
                     
-                    // Obtengo el cÃ³digo de error de la operaciÃ³n, 0 si todo ha ido bien
+                    // Obtengo el código de error de la operación, 0 si todo ha ido bien
                     if ($errorFichero > 0) {
-                        $mensaje .= "Se ha producido el error nÂº $errorFichero: <em>"
-                        . $codigosErrorSubida[$errorFichero] . '</em> <br>';
-                    } else { // subida correcta del temporal
+                        $mensaje .= "Se ha producido el error nº $errorFichero: <em>"
+                        . $codigosErrorSubida[$errorFichero] . '</em> <br><br>';
+                    } else {
                         
                         $todoOK = false;
                         
-                        //ComprobaciÃ³n de que es un fichero de imagen y que no se excede el tamaÃ±o total de subida
+                        //Comprobación de que es un fichero de imagen 
                         if(comprobarFormato($tipoFichero)){
                             $todoOK = true;
                         }else{
                             $todoOK = false;
-                            $mensaje .= 'ERROR: El archivo debe ser una imagen con extensiÃ³n PNG o JPG <br><br>';
+                            $mensaje .= 'ERROR: El archivo debe ser una imagen con extensión PNG o JPG <br><br>';
                         }
                          
-                        //ComprobaciÃ³n de que no se excede el tamaÃ±o de subida
+                        //Comprobación de que no se excede el tamaño de subida
                         if(comprobarTamanioIndividual($tamanioFichero, 200000)){
                             $todoOK = true;
                         }else{
                             $todoOK = false;
-                            $mensaje .= 'ERROR: Se excede el tamaÃ±o de subida de imÃ¡genes <br><br>';
+                            $mensaje .= 'ERROR: Se excede el tamaño de subida de imágenes <br><br>';
                         }
                         
-                        //ComprobaciÃ³n de que no se excede el tamaÃ±o de subida total
+                        //Comprobación de que no se excede el tamaño de subida total
                         if(comprobarTamanioTotal($tamanioTotal, 300000)){
                             $todoOK = true;
                         }else{
                             $todoOK = false;
-                            $mensaje .= 'ERROR: Se excede el tamaÃ±o de subida total <br><br>';
+                            $mensaje .= 'ERROR: Se excede el tamaño de subida total <br><br>';
                         }
                              
-                        //ComprobaciÃ³n de que no existe ya un fichero con ese nombre
-                        if(!comprobarNombre($nombreFichero, $directorio)){
+                        //Comprobación de que no existe ya un fichero con ese nombre
+                        if(!comprobarNombre($nombreFichero)){
                             $todoOK = true;
                         }else{
                             $todoOK = false;
@@ -164,8 +165,8 @@
                         if($todoOK){
     
                             //Intento mover el archivo temporal al directorio indicado
-                            if (move_uploaded_file($temporalFichero,  $directorio .'/'. $nombreFichero)) {
-                                $mensaje .= 'Imagen guardada en: ' . $directorio .'/'. $nombreFichero . ' <br><br>';
+                            if (move_uploaded_file($temporalFichero,  RUTA .'/'. $nombreFichero)) {
+                                $mensaje .= 'Imagen guardada en: ' . RUTA .'/'. $nombreFichero . ' <br><br>';
                             } else {
                                 $mensaje .= 'ERROR: Fallo al guardar la imagen <br><br>';
                             }
@@ -175,10 +176,11 @@
             
             } else {
                 $mensaje .= 'ERROR: No es un directorio correcto o no se tiene permiso de escritura <br><br>';
-            }   
+            } 
+    }
         
         echo $mensaje;
-        echo "<br><br><input type='button' value='Volver' onClick='history.go(-1);'>";
+        echo "<input type='button' value='Volver' onClick='history.go(-1);'>";
                  
     } 
 
