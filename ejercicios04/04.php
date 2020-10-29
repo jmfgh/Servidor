@@ -60,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
         }
           
     echo "</p>
-          <p>Año de estudios: ".$anyo."</p>
+          <p>Aï¿½o de estudios: ".$anyo."</p>
           <p>Lista de los codigos postales de provincias: ";
           
         foreach ($codigosPostales as $codigo) {
@@ -70,7 +70,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     echo "</p>
           <p>Comentarios: ".$comentario."</p>";
 
+}else{
+    header("refresh:0;url=04.html");
 }
+
+
 ?>
 </body>
 </html>
