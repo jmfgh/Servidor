@@ -17,6 +17,7 @@
 // PRIMERA APROXIMACIÓN AL MODELO VISTA CONTROLADOR. 
 // Funciones auxiliars Ej- usuarioOK
 include_once 'app/funciones.php';
+$usuarios = ["alumno20", "profesor", "josemanuel", "usuario85"];
 
 if ( !isset($_REQUEST['orden']) ){
     include_once 'app/entrada.php';
@@ -27,7 +28,7 @@ else {
         case "Entrar":
             // Chequear usuario
             if ( isset($_REQUEST['nombre']) && isset($_REQUEST['contra']) && 
-                 usuarioOK($_REQUEST['nombre'], $_REQUEST['contra'] )) {
+                 usuarioOK($_REQUEST['nombre'], $_REQUEST['contra'], $usuarios )) {
                echo " Bienvenido <b>".$_REQUEST['nombre']."</b><br>";
                include_once  'app/comentario.html';
             }
