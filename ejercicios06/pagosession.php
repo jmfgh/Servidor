@@ -1,10 +1,12 @@
 <?php
-if (isset($_COOKIE["nuevatarjeta"])) {
-    $tarjeta = $_COOKIE["nuevatarjeta"];
+session_start(); // Inicio de sesión
+
+if (isset($_SESSION["nuevatarjeta"])) {
+    $tarjeta = $_SESSION["nuevatarjeta"];
 }
 if(isset($_GET["nuevatarjeta"])){
-    setcookie("nuevatarjeta", $_GET["nuevatarjeta"], time() + 3);
-    header("refresh:0;url=pagocookie.php");
+    $_SESSION["nuevatarjeta"] = $_GET["nuevatarjeta"];
+    header("refresh:0;url=pagosession.php");
 }
 ?>
 <!DOCTYPE html>
@@ -15,6 +17,7 @@ if(isset($_GET["nuevatarjeta"])){
     </head>
     <body>
     <?php
+    
       if (!isset($tarjeta)) {
         echo "<H2>NO TIENE FORMA DE PAGO ASIGNADA</H2>";
       } else {
