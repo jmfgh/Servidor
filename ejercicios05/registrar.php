@@ -4,22 +4,68 @@
 <body>
 
 <?php //----- Si metodo GET -> muestra formulario y si es POST -> Valida y procesa el formulario
+
+function hayMayusculas ($valor){
+    for ($i=0; $i<strlen($valor); $i++){
+        if ( ctype_upper($valor[$i]) )
+            return true;
+    }
+    return false;
+}
+
+function hayMinusculas ($valor){
+    for ($i=0; $i<strlen($valor); $i++){
+        if ( ctype_lower($valor[$i]))
+            return true;
+    }
+    return false;
+}
+
+function hayDigito ($valor){
+    for ($i=0; $i<strlen($valor); $i++){
+        if ( ctype_digit($valor[$i]) )
+            return true;
+    }
+    return false;
+}
+
+function hayAlfanumerico ($valor){
+    for ($i=0; $i<strlen($valor); $i++){
+        if ( !ctype_alnum($valor[$i]) )
+            return true;
+    }
+    return false;
+}
     
-    function comprobarContras($clave1, $clave2) :bool{
-        $ok = false;
+function comprobarContras($clave1, $clave2) :bool{
+        $ok = true;
         
-        if ($clave1 == $clave2){
-            
-            if(strlen($clave1) >= 8){
-                ;
-            }
-            
-        }else{
-            echo "ERROR: Las contraseÃ±as no coinciden";
+        if ( $clave1 != $clave2 ){
+            echo " Las contraseñas deben ser iguales ";
+            $ok = false;
         }
         
+        if ( strlen($clave1) < 8 ){
+            echo "Tamaño de la contraseña debe ser igual o superior a 8 caracteres en total";
+            $ok = false;
+        }
+        
+        if ( !hayMayusculas($clave1) || !hayMinusculas($clave1)){
+            echo " Debe haber mayúsculas y minúsculas. ";
+            $ok = false;
+        }
+        if ( !hayDigito($clave1)){
+            echo " Debe haber algun dígito.";
+            exit;
+        }
+        
+        if ( !hayAlfanumerico($clave)){
+            echo " No hay nigún caracter no alfanumérico ";
+            $ok = false;
+        }
+
         return $ok;
-    }
+}
 
 
     if ($_SERVER['REQUEST_METHOD'] == 'GET'){ 
@@ -45,7 +91,7 @@
             $nombre = $_POST['nombre'];
             $mail = $_POST['mail'];
             $clave1 = $_POST['clave1'];
-            $clave1 = $_POST['clave2'];
+            $clave2 = $_POST['clave2'];
             
             if(comprobarContras($clave1, $clave2) && filter_var($mail, FILTER_VALIDATE_EMAIL)){
                 echo " Usuario registrado. Bienvenid@ ".$nombre;
