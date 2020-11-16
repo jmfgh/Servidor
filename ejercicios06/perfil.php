@@ -1,52 +1,89 @@
+<?php
+define ('TIEMPOVALIDEZ',time() + 7*24*60*60); // Una semana
+
+$edad="";
+$genero="";
+$deportes=[];
+
+if ( isset($_GET['orden'])){
+    switch ($_GET['orden']) {
+        case "Confirmar":
+            if ( isset ($_GET['edad'])){
+                $edad =    $_GET['edad'];
+                setcookie('edad',$edad, TIEMPOVALIDEZ);
+            }
+            if (isset ($_GET['genero'])){
+                $genero =  $_GET['genero'];
+                setcookie('genero',$genero,TIEMPOVALIDEZ);
+            }
+            if (isset ($_GET['deportes'])){
+                $deportes= $_GET['deportes'];
+                var_dump($deportes);
+                
+                setcookie('deportes',implode(",",$deportes),TIEMPOVALIDEZ);
+            }
+            break;
+        case "Eliminar":
+            $edad="";
+            $genero="";
+            $deportes=[];
+            setcookie('edad'    ,$edad,time() -100);
+            setcookie('genero'  ,$genero, time() -100);
+            setcookie('deportes',implode(",",$deportes), time() -100);
+            
+    }
+} else {
+    // No hay orden, se muestra el formulario por primera vez
+    if ( isset($_COOKIE['edad'])){
+        $edad = $_COOKIE['edad'];
+    }
+    if ( isset($_COOKIE['genero'])){
+        $genero=$_COOKIE['genero'];
+    }
+    if ( isset($_COOKIE['deportes'])){
+        $deportes=explode(",",$_COOKIE['deportes']);
+    }
+    
+    
+}
+
+?>
+
+<!DOCTYPE html>
 <html>
 <head>
-<style>
-	h1{
-		background-color: blue;
-		color: white;
-		padding: 15px;
-	}
-	div{
-		text-align: center;
-	}
-</style>
+<meta charset="UTF-8">
+<link href="default.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
+<div id="container" style="width: 380px;">
+		<div id="header">
+			<h1>SUS DATOS ALMACENADOS</h1>
+		</div>
 
-<?php
-
-    if ($_SERVER['REQUEST_METHOD'] == 'GET'){ 
-        echo "<div><h1>Formulario con multiples campos</h1></div>
-                <form method='POST'>
-
-                Edad: <input name='edad' type='number'><br><br>       		
-                Genero:
-        		<input type='radio' name='sexo' value='Mujer'> Mujer	 
-        		<input type='radio' name='sexo' value='Hombre'> Hombre
-
-                Deportes:<br>
-			    <input name='deportes[]' value='Futbol' type='checkbox'>Futbol<br> 
-			    <input name='deportes[]' value='Tenis' type='checkbox'>Tenis<br>
-			    <input name='deportes[]' value='Ciclismo' type='checkbox'>Ciclismo<br>
-                <input name='deportes[]' value='Otro' type='checkbox'>Otro<br><br>
-	          
-                <input type='submit' nombre='almacenar' value='Almacenar valores'>
-                <input type='submit' nombre='eliminar' value='Eliminar valores'>
-                </form>";
-    }else{     
-            
-            $edad = (isset($_POST["edad"]))? strip_tags($_POST["nombre"]) : "Ninguno introducido.";
-            $sexo = (isset($_POST["sexo"]))? $_POST["sexo"] : "Ninguno seleccionado.";
-            
-            $deportes = [];
-            
-            if(isset($_POST["deportes"])){
-                foreach ($_POST["deportes"] as $deporte){
-                    $deportes[] = $deporte;
-                }
-            }
-              
-    }
-?>
+		<div id="content">
+<fieldset> 
+<form method="get">
+<label>Edad</label> <input type="number" name="edad" value="<?=isset($edad)?$edad:'' ?>" ><br> 
+Género :<br>
+	<label> Mujer </label>
+	<input type="radio" name="genero" value="Mujer"  <?= ($genero=='Mujer')?"checked= \"checked\"":""; ?> >
+	<label> Hombre</label>
+	<input type="radio" name="genero" value="Hombre" <?= ($genero=='Hombre')?"checked= \"checked\"":""; ?> >
+	<br>
+<label>Deportes</label><br>
+	<select name="deportes[]" multiple="multiple" size="3">
+     <option value="Futbol"   <?= in_array("Futbol"   ,$deportes)?"selected=\"selected\"":""; ?>   >Futbol</option>
+     <option value="Tenis"    <?= in_array("Tenis"    ,$deportes)?"selected=\"selected\"":""; ?>   >Tenis</option>
+     <option value="Ciclismo" <?= in_array("Ciclismo" ,$deportes)?"selected=\"selected\"":""; ?>   >Ciclismo</option>
+     <option value="Otro"     <?= in_array("Otro"     ,$deportes)?"selected=\"selected\"":""; ?>   >Otro</option>
+    </select> 
+    <br>
+    <button name="orden" value="Confirmar"> Almacenar valores </button>
+    <button name="orden" value="Eliminar"> Eliminar valores </button>
+</form>
+</fieldset>
+</div>
+</div>
 </body>
 </html>
