@@ -1,5 +1,6 @@
 <?php 
 include_once 'config.php';
+
 /* DATOS DE USUARIO
 • Identificador ( 5 a 10 caracteres, no debe existir previamente, solo letras y números)
 • Contraseña ( 8 a 15 caracteres, debe ser segura)

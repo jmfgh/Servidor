@@ -4,10 +4,16 @@
 // ------------------------------------------------
 include_once 'config.php';
 include_once 'modeloUser.php';
+include_once 'funciones.php';
 
 //Registrar nuevo usuario
 function ctlUserRegistroUsuario() {
-    ;
+    $user  = "";
+    $nombre  = "";
+    $clave   = "";
+    $mail = "";
+    $nplan= "";
+    include_once 'plantilla/fnuevo.php';
 }
 
 /*
@@ -25,7 +31,7 @@ function  ctlUserInicio(){
             if ( modeloOkUser($user,$clave)){
                 $_SESSION['user'] = $user;
                 $_SESSION['tipouser'] = modeloObtenerTipo($user);
-                if ( $_SESSION['tipouser'] == "MÃ¡ster"){
+                if ( $_SESSION['tipouser'] == "Máster"){
                     $_SESSION['modo'] = GESTIONUSUARIOS;
                     header('Location:index.php?orden=VerUsuarios');
                 }
@@ -39,7 +45,7 @@ function  ctlUserInicio(){
                 }
             }
             else {
-                $msg="Error: usuario y contraseÃ±a no vÃ¡lidos.";
+                $msg="Error: usuario y contraseña no válidos.";
            }  
         }
     }
@@ -48,14 +54,24 @@ function  ctlUserInicio(){
 }
 
 function ctlUserAlta(){
+    limpiarArrayEntrada($_POST); //Evito la posible inyección de código
+    comprobarContra($clave);
     modeloUserAdd($userid,$userdat);
 }
 
 function ctlUserDetalles(){
-    
+    $user  = "";
+    $nombre  = "";
+    $clave   = "";
+    $mail = "";
+    $nplan= "";
+    include_once 'plantilla/fmod.php';
 }
 
 function ctlUserModificar(){
+    limpiarArrayEntrada($_POST); //Evito la posible inyección de código
+    $userid = $_POST['user'];
+    $userdat = $_POST;
     modeloUserUpdate ($userid,$userdat);
 }
 

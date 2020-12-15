@@ -5,6 +5,7 @@
 // No se envia al navegador
 ob_start();
 ?>
+<a href='index.php?orden=Registrarse'>Darse de alta</a>
 <div id='aviso'><b><?= (isset($msg))?$msg:"" ?></b></div>
 <form name='ACCESO' method="POST" action="index.php">
 	<table>

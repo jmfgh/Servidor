@@ -7,8 +7,17 @@ ob_start();
 ?>
 <div id='aviso'><b><?= (isset($msg))?$msg:"" ?></b></div>
 <form name='ALTA' method="POST" action="index.php?orden=Alta">
-<-- COMPLETAR -->	
-	
+      ID: <input type="text" name="user" size="10"><br>
+      Nombre: <input type="text" name="nombre" size="25"><br>
+      Contraseña: <input type="password" name="clave" size="15"><br>
+      Correo: <input type="email" name="mail" size="15"><br>
+      Tipo de Plan: <br>
+      <input type="radio" name="nplan" value="0"> Básico<br>
+      <input type="radio" name="nplan" value="1"> Profesional<br>
+      <input type="radio" name="nplan" value="2"> Premium<br>
+      <input type="radio" name="nplan" value="3"> Máster<br>
+      
+      <input type="submit" name="orden" value="Registrarse">
 </form>
 <?php 
 // Vacio el bufer y lo copio a contenido
