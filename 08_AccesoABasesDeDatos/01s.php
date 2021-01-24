@@ -5,7 +5,7 @@
 // Tratamiento de Errores mediante excepciones
 mysqli_report(MYSQLI_REPORT_STRICT);
 try {
-    $db = new mysqli("192.168.105.96", "root", "root","banco");
+    $db = new mysqli("localhost", "root", "root","banco");
 }catch (mysqli_sql_exception $exp){
     printf("***Error: Conexión fallida a la BD: %s\n", $exp->getMessage());
     exit();

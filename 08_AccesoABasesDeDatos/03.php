@@ -3,7 +3,7 @@
 <?php // Tienda ///////////////////////////////////////////////////////
 
   // Vuelca el contenido da la tabla catalogo en el array $producto
-  $db = new mysqli("192.168.105.96", "root", "root","tienda");
+  $db = new mysqli("localhost", "root", "root","tienda");
  
   if ($db->connect_error ){
       printf("Conexión fallida: %s\n", $db->connect_error());

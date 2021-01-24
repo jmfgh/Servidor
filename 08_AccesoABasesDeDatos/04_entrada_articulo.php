@@ -23,7 +23,7 @@
         <tr>
           <td>
             <form action="pagina.php" method="post">
-              <input type="hidden" name="ejercicio" value="04">
+              <input type="hidden" name="ejercicio" value="04s">
               Unidades que entran al almacén: <input type="number" min="0" name="unidades" >
               <input type="hidden" name="codigo" value="<?=$codigo?>">
               <input type="hidden" name="accion" value="Entrada">
@@ -35,7 +35,7 @@
           <td>&nbsp;</td>
           <td>
             <form>
-              <a class="btn btn-danger" href="pagina.php?ejercicio=04" role="button">Cancelar</a>
+              <a class="btn btn-danger" href="pagina.php?ejercicio=04s" role="button">Cancelar</a>
             </form>
           </td>
         </tr>

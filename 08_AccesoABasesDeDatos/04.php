@@ -6,7 +6,7 @@
     
     mysqli_report(MYSQLI_REPORT_STRICT);
     try {
-        $db = new mysqli("192.168.105.96", "root", "root","gestisimal");
+        $db = new mysqli("localhost", "root", "","gestisimal");
     }catch (mysqli_sql_exception $exp){
         printf("***Error: Conexión fallida a la BD: %s\n", $exp->getMessage());
         exit();
@@ -54,6 +54,7 @@
         echo '<script type="text/javascript">alert("Debe introducir un número positivo.");</script>';
       } else {
         $entrada = "UPDATE articulo SET stock=stock+".$_POST['unidades']." WHERE codigo=\"$_POST[codigo]\"";
+        echo "<h1>$entrada </h1>";
         $db->query($entrada);
       }
     }
@@ -239,7 +240,16 @@
             <span class="glyphicon glyphicon-step-forward"></span>
           </button>
         </form>
-      </td>      
+      </td>
+        <td>
+        <form action="pagina.php" method="post">
+          <input type="hidden" name="ejercicio" value="04">
+          <button type="submit" name="accion" value="Valor Almacen">
+            Valor Almacén
+            <span class="glyphicon glyphicon-ok"></span>
+          </button>
+        </form>
+      </td>         
 
     <!-- Añadir un nuevo articulo -->
     <form action="pagina.php" method="post">

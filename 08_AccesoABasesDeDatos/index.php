@@ -140,6 +140,9 @@
           <div class="panel-footer">
             <a class="btn btn-default" href="pagina.php?ejercicio=04" role="button">Solución</a>
           </div>
+          <div class="panel-footer">
+          <a class="btn btn-default" href="pagina.php?ejercicio=04s" role="button">Solución más segura</a>
+        </div>
         </div>
 
         <div class="panel panel-default">

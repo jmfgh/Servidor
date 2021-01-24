@@ -1,0 +1,4 @@
+Administrador:
+
+correo: admin@admin.com
+clave: contraseña

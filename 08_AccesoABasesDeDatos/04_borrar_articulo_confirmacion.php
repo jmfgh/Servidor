@@ -24,7 +24,7 @@
         <tr>
           <td>
             <form action="pagina.php" method="post">
-              <input type="hidden" name="ejercicio" value="04">
+              <input type="hidden" name="ejercicio" value="04s">
               <input type="hidden" name="codigo" value="<?=$codigo?>">
               <input type="hidden" name="accion" value="Eliminar">
               <button type="submit" class="btn btn-primary">
@@ -34,7 +34,7 @@
           </td>
           <td>&nbsp;</td>
           <td>
-            <a class="btn btn-danger" href="pagina.php?ejercicio=04" role="button">Cancelar</a>
+            <a class="btn btn-danger" href="pagina.php?ejercicio=04s" role="button">Cancelar</a>
           </td>
         </tr>
       </table>

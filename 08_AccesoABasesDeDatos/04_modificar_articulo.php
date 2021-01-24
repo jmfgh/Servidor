@@ -13,7 +13,7 @@
   </div>
   <div class="panel-body">
     <form action="pagina.php" method="post">
-      <input type="hidden" name="ejercicio" value="04">
+      <input type="hidden" name="ejercicio" value="04s">
       Código: <input type="text" name="codigo" value="<?=$codigo?>" readonly="readonly"><br>
       Descripción: <input type="text" name="descripcion" value="<?=$descripcion?>"><br>
       Precio de compra: <input type="text" name="precio_compra" value="<?=$precio_compra?>" size="60"><br>
@@ -22,7 +22,7 @@
   </div>
       <div class="panel-footer">
         <input type="submit" class="btn btn-success" name="accion" value="Modificar">
-        <a class="btn btn-danger" href="pagina.php?ejercicio=04" role="button">Cancelar</a>
+        <a class="btn btn-danger" href="pagina.php?ejercicio=04s" role="button">Cancelar</a>
       </div> 
     </form>
 </div>

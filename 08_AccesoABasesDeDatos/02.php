@@ -1,7 +1,7 @@
 <h3 class="text-center">Mantenimiento de clientes</h3>
 <?php
 
-$db = new mysqli("192.168.105.96", "root", "root","banco");
+$db = new mysqli("localhost", "root", "root","banco");
 $db->set_charset("utf8");
 
 if(!isset($_SESSION['pagina'])) {
@@ -19,16 +19,19 @@ if ( isset ($_POST['accion'])){
                 echo '<script type="text/javascript">alert("Lo siento, ese DNI ya existe en la base de datos");</script>';
             } else {
             $inserta = "INSERT INTO cliente VALUES (\"$_POST[dni]\", \"$_POST[nombre]\", \"$_POST[direccion]\", \"$_POST[telefono]\")";
-            $db->query($inserta);
+            $resu = $db->query($inserta);
             }
             break;
         case "Modificar":
             $modifica = "UPDATE cliente SET  nombre=\"$_POST[nombre]\", direccion=\"$_POST[direccion]\", telefono=\"$_POST[telefono]\" WHERE dni=\"$_POST[dni]\"";
-            $db->query($modifica);
+            $resu = $db->query($modifica);
             break;
         case "Eliminar":
             $borra = "DELETE FROM cliente WHERE dni=\"$_POST[dni]\"";
-            $db->query($borra);
+            $resu = $db->query($borra);
+    }
+    if ( $resu === false){
+        echo '<script type="text/javascript">alert("'.$db->error.'");</script>';
     }
 }
   
