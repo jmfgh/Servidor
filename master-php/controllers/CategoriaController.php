@@ -34,14 +34,6 @@ class categoriaController{
 		Utils::isAdmin();
 		require_once 'views/categoria/crear.php';
 	}
-	public function modificar(){
-		Utils::isAdmin();
-		require_once 'views/categoria/modificar.php';
-	}
-	public function borrar(){
-		Utils::isAdmin();
-		require_once 'views/categoria/borrar.php';
-	}
 	
 	public function save(){
 		Utils::isAdmin();
@@ -49,30 +41,69 @@ class categoriaController{
 			// Guardar la categoria en bd
 			$categoria = new Categoria();
 			$categoria->setNombre($_POST['nombre']);
-			$save = $categoria->save();
+
+			if(isset($_GET['id'])){
+				$id = $_GET['id'];
+				$categoria->setId($id);
+
+				$save = $categoria->edit();
+			}else{
+				$save = $categoria->save();
+			}
+			
+			if($save){
+				$_SESSION['categoria'] = "complete";
+			}else{
+				$_SESSION['categoria'] = "failed";
+			}
+		}else{
+			$_SESSION['categoria'] = "failed";
 		}
 		header("Location:".base_url."categoria/index");
 	}
 
-	public function mod(){
+	public function editar(){
 		Utils::isAdmin();
-	    if(isset($_POST) && isset($_POST['nombre'])){
-			// Guardar la categoria en bd
+		if(isset($_GET['id'])){
+			$id = $_GET['id'];
+			$edit = true;
+			
 			$categoria = new Categoria();
-			$categoria->setNombre($_POST['nombre']);
-			$save = $categoria->save();
+			$categoria->setId($id);
+			
+			$cat = $categoria->getOne();
+			
+			require_once 'views/categoria/crear.php';
+			
+		}else{
+			header('Location:'.base_url.'categoria/index');
 		}
-		header("Location:".base_url."categoria/index");
 	}
-
-	public function del(){
+	
+	public function eliminar(){
 		Utils::isAdmin();
-	    if(isset($_POST) && isset($_POST['nombre'])){
-			// Guardar la categoria en bd
+		
+		if(isset($_GET['id'])){
+			$id = $_GET['id'];
 			$categoria = new Categoria();
-			$categoria->setNombre($_POST['nombre']);
-			$save = $categoria->save();
+			$categoria->setId($id);
+
+			// Conseguir productos;
+			$producto = new Producto();
+			$producto->setCategoria_id($id);
+			$productos = $producto->getAllCategory();
+			if($productos->num_rows > 0){
+			
+				$_SESSION['CatDelete'] = 'failed';
+				
+			}else{
+				$delete = $categoria->delete()? $_SESSION['CatDelete'] = 'complete' : $_SESSION['CatDelete'] = 'failed';
+
+			}
+		}else{
+			$_SESSION['CatDelete'] = 'failed';
 		}
-		header("Location:".base_url."categoria/index");
+		
+		header('Location:'.base_url.'categoria/index');
 	}
 }
