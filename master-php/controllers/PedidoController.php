@@ -1,5 +1,7 @@
 <?php
 require_once 'models/Pedido.php';
+require_once 'models/Usuario.php';
+require_once __DIR__ .'/../vendor/autoload.php';
 
 class pedidoController{
 	
@@ -87,6 +89,16 @@ class pedidoController{
 			$pedido = new Pedido();
 			$pedido->setId($id);
 			$pedido = $pedido->getOne();
+
+			$idconectado = Utils::getUserId();
+			if($pedido->usuario_id != $idconectado && isset($_SESSION['admin'])){
+				header('Location:'.base_url.'pedido/mis_pedidos');
+				return;
+			}
+
+			$usuario = new Usuario();
+			$usuario->setId($pedido->usuario_id);
+			$usr = $usuario->getOne();
 			
 			// Sacar los poductos
 			$pedido_productos = new Pedido();
@@ -127,5 +139,35 @@ class pedidoController{
 		}
 	}
 	
+		
+	public function imprimir(){
+		Utils::isAdmin();
+		
+		if(isset($_POST['pedido_id'])){
+			$mpdf = new \Mpdf\Mpdf();
+			$content = $this->detallesPDF($_POST['pedido_id']);
+			$mpdf->WriteHTML($content);
+			$mpdf->Output();
+                 
+		}else{
+			header("Location:".base_url);
+		}
+	}
+
+	private function detallesPDF($id):string{
+
+		$pedido = new Pedido();
+		$pedido->setId($id);
+		$pedido = $pedido->getOne();
+
+		$pedido_productos = new Pedido();
+		$productos = $pedido_productos->getProductosByPedido($id);
+
+		ob_start();
+		require_once 'views/pedido/detallespdf.php';
+		$salida = ob_get_contents();
+		ob_end_clean();
+		return $salida;
+	}
 	
 }

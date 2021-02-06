@@ -1,7 +1,7 @@
 <h1>Detalle del pedido</h1>
 
 <?php if (isset($pedido)): ?>
-		<?php if(isset($_SESSION['admin'])): ?>
+		<?php if(isset($_SESSION['admin'])):?>
 			<h3>Cambiar estado del pedido</h3>
 			<form action="<?=base_url?>pedido/estado" method="POST">
 				<input type="hidden" value="<?=$pedido->id?>" name="pedido_id"/>
@@ -15,6 +15,16 @@
 			</form>
 			<br/>
 		<?php endif; ?>
+		<form action="<?=base_url?>pedido/imprimir" method="POST">
+			<input type="hidden" value="<?= $pedido->id ?>" name="pedido_id">
+			<input type="submit" value="Generar documento PDF">
+		</form>	
+		<br/>
+
+		<h3>Datos de usuario</h3>
+		Nombre: <?= $usr->nombre ?>   <br/>
+		Apellidos: <?= $usr->apellidos ?> <br/>
+		Email: <?= $usr->email ?>   <br/><br/>
 
 		<h3>Dirección de envio</h3>
 		Provincia: <?= $pedido->provincia ?>   <br/>
@@ -25,7 +35,7 @@
 		Estado: <?=Utils::showStatus($pedido->estado)?> <br/>
 		Número de pedido: <?= $pedido->id ?>   <br/>
 		Total a pagar: <?= $pedido->coste ?> $ <br/>
-		Productos:
+		Productos:<br/><br/>
 
 		<table>
 			<tr>

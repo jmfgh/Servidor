@@ -26,6 +26,12 @@ class Utils{
 			return true;
 		}
 	}
+
+	public static function getUserId(){
+		self::isIdentity();
+		return $_SESSION['identity']->id;
+	}
+
 	
 	public static function showCategorias(){
 		require_once 'models/Categoria.php';

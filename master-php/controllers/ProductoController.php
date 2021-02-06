@@ -68,8 +68,10 @@ class productoController{
 							mkdir('uploads/images', 0777, true);
 						}
 
-						$producto->setImagen($filename);
-						move_uploaded_file($file['tmp_name'], 'uploads/images/'.$filename);
+						$nombretmp = tempnam ('uploads/images', 'img');
+						$nombrefinal = pathinfo($nombretemp, PATHINFO_BASENAME).".".pathinfo($filename, PATHINFO_EXTENSION);
+						$producto->setImagen($nombrefinal);
+						move_uploaded_file($file['tmp_name'], 'uploads/images/'.$nombrefinal);
 					}
 				}
 				
