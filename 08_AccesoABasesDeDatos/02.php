@@ -1,7 +1,7 @@
 <h3 class="text-center">Mantenimiento de clientes</h3>
 <?php
 
-$db = new mysqli("localhost", "root", "root","banco");
+$db = new mysqli("localhost", "root", "","banco");
 $db->set_charset("utf8");
 
 if(!isset($_SESSION['pagina'])) {

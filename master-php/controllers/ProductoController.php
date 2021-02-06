@@ -28,8 +28,40 @@ class productoController{
 		Utils::isAdmin();
 		
 		$producto = new Producto();
-		$productos = $producto->getAll();
+		$total = $producto->getAllCount();
+		$numPaginas = floor(abs($total - 1) / 5 + 1);
+
+		if(!isset($_SESSION['pagina'])) {
+			$_SESSION['pagina'] = 1;
+			header("refresh:0");
+		}
 		
+		if (isset ($_POST['pagina'])){
+		$pagina = $_POST['pagina'];
+		}
+		else {
+		$pagina = "Primera";
+		}
+	
+		if ($pagina == "Primera") {
+		  $_SESSION['pagina'] = 1;
+		}
+	
+		if (($pagina == "Anterior") && ($_SESSION['pagina'] > 1)) {
+		  $_SESSION['pagina']--;
+		}
+	
+		if (($pagina == "Siguiente") && ($_SESSION['pagina'] < $numPaginas)) {
+		  $_SESSION['pagina']++;
+		  echo '<meta http-equiv="refresh" content="5" />';
+		}
+	
+		if ($pagina == "Ultima") {
+		  $_SESSION['pagina'] = $numPaginas;
+		}
+
+		$productos = $producto->getSome(($_SESSION['pagina'] - 1) * 5);
+
 		require_once 'views/producto/gestion.php';
 	}
 	

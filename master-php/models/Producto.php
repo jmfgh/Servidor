@@ -93,6 +93,18 @@ class Producto{
 		$productos = $this->db->query("SELECT * FROM productos ORDER BY id DESC");
 		return $productos;
 	}
+
+	public function getAllCount(){
+		$productos = $this->db->query("SELECT count(*) total FROM productos");
+		$fila = $productos->fetch_assoc();
+		$total = intval($fila['total']);
+		return $total;
+	}
+
+	public function getSome($limite){
+		$productos = $this->db->query("SELECT * FROM productos ORDER BY id DESC LIMIT ".$limite.", 5");
+		return $productos;
+	}
 	
 	public function getAllCategory(){
 		$sql = "SELECT p.*, c.nombre AS 'catnombre' FROM productos p "

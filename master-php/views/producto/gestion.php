@@ -38,4 +38,44 @@
 			</td>
 		</tr>
 	<?php endwhile; ?>
+	<tr>
+      <td>Página <?=$_SESSION['pagina']?> de <?=$numPaginas?></td>
+      <td></td>
+      <!-- Primera -->
+      <td>
+        <form action="<?=base_url?>producto/gestion" method="post">
+          <button type="submit" name="pagina" value="Primera">
+            <span class="glyphicon glyphicon-step-backward"></span>
+            Primera
+          </button>
+        </form>
+      </td>
+      <!-- Anterior -->
+      <td>
+        <form action="<?=base_url?>producto/gestion" method="post">
+          <button type="submit" name="pagina" value="Anterior">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+            Anterior
+          </button>
+        </form>
+      </td>
+      <!-- Siguiente -->
+      <td>
+        <form action="<?=base_url?>producto/gestion" method="post">
+          <button type="submit" name="pagina" value="Siguiente">
+            Siguiente
+            <span class="glyphicon glyphicon-chevron-right"></span>
+          </button>
+        </form>
+      </td>
+      <!-- Última -->
+      <td>
+        <form action="<?=base_url?>producto/gestion" method="post">
+          <button type="submit" name="pagina" value="Ultima">
+            Última
+            <span class="glyphicon glyphicon-step-forward"></span>
+          </button>
+        </form>
+      </td>
+	 </tr>   
 </table>
