@@ -10,6 +10,15 @@ class productoController{
 		// renderizar vista
 		require_once 'views/producto/destacados.php';
 	}
+
+	public function ofertas(){
+		$producto = new Producto();
+		$productos = $producto->getOfertas();
+	
+		// renderizar vista
+		require_once 'views/producto/ofertas.php';
+	}
+
 	
 	public function ver(){
 		if(isset($_GET['id'])){
@@ -77,8 +86,9 @@ class productoController{
 			$descripcion = isset($_POST['descripcion']) ? $_POST['descripcion'] : false;
 			$precio = isset($_POST['precio']) ? $_POST['precio'] : false;
 			$stock = isset($_POST['stock']) ? $_POST['stock'] : false;
+			$oferta = isset($_POST['oferta']) ? $_POST['oferta'] : false;
 			$categoria = isset($_POST['categoria']) ? $_POST['categoria'] : false;
-			// $imagen = isset($_POST['imagen']) ? $_POST['imagen'] : false;
+			$imagen = isset($_POST['imagen']) ? $_POST['imagen'] : false;
 			
 			if($nombre && $descripcion && $precio && $stock && $categoria){
 				$producto = new Producto();
@@ -87,6 +97,7 @@ class productoController{
 				$producto->setPrecio($precio);
 				$producto->setStock($stock);
 				$producto->setCategoria_id($categoria);
+				$producto->setOferta($oferta);
 				
 				// Guardar la imagen
 				if(isset($_FILES['imagen'])){

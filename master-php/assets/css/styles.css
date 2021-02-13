@@ -420,6 +420,29 @@ button{
 
 /*Nuevo*/
 
+.ofertas{
+    max-width: 70px;
+}
+
+.oferta{
+
+    height: 45px !important;
+    float: right !important;
+    margin-bottom: 0px !important;
+
+}
+
+.oferta2{
+
+    width: 25% !important;
+    float: right !important;
+    margin-bottom: 0px !important;
+    position: relative;
+    right: 185px;
+    bottom: 46px;
+
+}
+
 @media screen and (max-width: 1270px) {
     #lateral {
         width: 100% !important;

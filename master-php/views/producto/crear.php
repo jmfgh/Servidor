@@ -21,7 +21,10 @@
 
 		<label for="stock">Stock</label>
 		<input type="number" name="stock" value="<?=isset($pro) && is_object($pro) ? $pro->stock : ''; ?>"/>
-
+		
+		<label for="oferta">Oferta</label>
+		<input type="text" name="oferta" value="<?=isset($pro) && is_object($pro) ? $pro->oferta : ''; ?>"/>
+		
 		<label for="categoria">Categoria</label>
 		<?php $categorias = Utils::showCategorias(); ?>
 		<select name="categoria">
