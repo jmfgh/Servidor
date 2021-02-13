@@ -57,7 +57,7 @@ td{
 
 #header{
     height: 145px;
-    background: #F0F0F0;
+    background: #f5f243;
 }
 
 #logo{
@@ -77,7 +77,7 @@ td{
     letter-spacing: 4px;
     font-family: 'Open Sans', Helvetica, Arial;
     text-transform: uppercase;
-    color: #01B1EA;
+    color: #0093c4;
     font-weight: bold;
     text-decoration: none;
     margin-top: 18px;
@@ -420,3 +420,92 @@ button{
 
 /*Nuevo*/
 
+@media screen and (max-width: 1270px) {
+    #lateral {
+        width: 100% !important;
+        float: none !important; 
+        margin-left: 0px;
+        min-height: 250px !important;
+        display: flex;
+    }
+
+    #central {
+        width: 80%;
+        float: none;
+        border-left: none;
+        box-shadow: none;
+        padding: 0px;
+        margin: auto;
+    }
+
+    #central h1{
+        background-color: #0093c4;
+        padding-top: 20px;
+        border-radius: 7px;
+        margin-bottom: 50px;
+    }
+
+
+}
+
+@media screen and (max-width: 920px) {
+
+    #container {
+        width: 100%;
+        margin: 0px;
+    }
+
+    #header{
+        height: 80px;
+    }
+
+    #central h1{
+        margin: 50px;
+    }
+
+    #lateral {
+        min-height: 200px !important;
+
+    }
+
+    .product {
+        width: 100% !important;
+        float: none !important;
+        
+    }
+
+    .product a {
+        max-width: 30%;
+        margin: auto;
+    }
+
+    #logo {
+        margin-left: auto !important;
+        float: none !important;
+        text-align: center;
+    }
+
+    #logo a {
+        float: none !important;
+        font-size: 32px !important;
+        margin-left: 0px !important;
+
+    }
+
+    #logo img {
+        display: none !important;
+    }
+
+    #menu ul li {
+        line-height: 10px;
+        font-size: 0.7em;
+        padding-top: 20px;
+    }
+
+    #menu ul {
+        margin: auto; 
+        margin-left: auto !important; 
+    }
+
+
+  }

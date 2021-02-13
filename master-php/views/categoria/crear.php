@@ -8,7 +8,7 @@
 
 <form action="<?=$url_action?>" method="POST">
 	<label for="nombre">Nombre</label>
-	<input type="text" name="nombre" value="<?= ($edit)? $cat->nombre : ''; ?>" required/>
+	<input type="text" name="nombre" value="" required/>
 	
 	<input type="submit" value="Guardar" />
 </form>
