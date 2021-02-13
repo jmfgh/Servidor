@@ -107,7 +107,6 @@ td{
 }
 
 #menu ul li{
-    line-height: 55px;
     float:left;
     border-right: 1px solid #363636;
 }
@@ -119,6 +118,7 @@ td{
     padding-left: 12px;
     padding-right: 12px;
     transition: all 300ms;
+    background-color: #222222;
 }
 
 #menu a:first-child{
@@ -498,8 +498,9 @@ button{
 
     #menu ul li {
         line-height: 10px;
-        font-size: 0.7em;
-        padding-top: 20px;
+        font-size: 0.9em;
+        padding: 15px;
+        background-color: #222222;
     }
 
     #menu ul {
@@ -507,5 +508,12 @@ button{
         margin-left: auto !important; 
     }
 
+    #menu a:first-child{
+        border-left: none; 
+     }
+
+    nav button:focus {
+        outline: none;
+    }
 
   }
